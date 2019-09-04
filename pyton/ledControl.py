@@ -100,8 +100,8 @@ if __name__ == '__main__':
             # input 
             input1 = input() 
             inputArray = input1.split(";")
-			for singelPixel in inputArray:
-			  pixelSettingArray = singelPixel.split(",")
+			for index in range(len(inputArray)):
+			  pixelSettingArray = inputArray[index].split(",")
 		      strip.setPixelColor(pixelSettingArray[0], Color(pixelSettingArray[1], pixelSettingArray[2], pixelSettingArray[3]))
 
             strip.show()
