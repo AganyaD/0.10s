@@ -98,7 +98,7 @@ if __name__ == '__main__':
 
         while True:
             readCommand = input("enther brigthness")
-			print("you enthered : " + readCommand)
+			print(readCommand)
             colorWipe(strip, Color(int(readCommand), 0, 0))  # Red wipe
             #colorWipe(strip, Color(0, 255, 0))  # Blue wipe
             #colorWipe(strip, Color(0, 0, 255))  # Green wipe
