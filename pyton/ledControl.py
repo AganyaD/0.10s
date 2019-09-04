@@ -99,10 +99,13 @@ if __name__ == '__main__':
         while True:
             # input 
             input1 = input() 
-              
-            # output 
-            print(input1) 
-            colorWipe(strip, Color(int(input1), 0, 0))  # Red wipe
+            inputArray = input1.split(";")
+			for singelPixel in inputArray:
+			  pixelSettingArray = singelPixel.split(",")
+		      strip.setPixelColor(pixelSettingArray[0], Color(pixelSettingArray[1], pixelSettingArray[2], pixelSettingArray[3]))
+
+            strip.show()
+            #colorWipe(strip, Color(int(input1), 0, 0))  # Red wipe
             #colorWipe(strip, Color(0, 255, 0))  # Blue wipe
             #colorWipe(strip, Color(0, 0, 255))  # Green wipe
             
