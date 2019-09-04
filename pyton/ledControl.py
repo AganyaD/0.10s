@@ -97,9 +97,12 @@ if __name__ == '__main__':
     try:
 
         while True:
-            readCommand = input("enther brigthness")
-			print(readCommand)
-            colorWipe(strip, Color(int(readCommand), 0, 0))  # Red wipe
+            # input 
+            input1 = input() 
+              
+            # output 
+            print(input1) 
+            colorWipe(strip, Color(int(input1), 0, 0))  # Red wipe
             #colorWipe(strip, Color(0, 255, 0))  # Blue wipe
             #colorWipe(strip, Color(0, 0, 255))  # Green wipe
             
