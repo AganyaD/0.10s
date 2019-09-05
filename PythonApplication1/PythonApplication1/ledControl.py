@@ -98,12 +98,16 @@ if __name__ == '__main__':
 
         while True:
             # input 
-            testPars = str(raw_input("Enter Command"));
+            testPars = str(raw_input("Enter Command.... \n"));
             inputArray = testPars.split(";")
             for index in range(len(inputArray)):
+              print("---------------------------------------")
               pixelSettingArray = inputArray[index].split(",")
-              strip.setPixelColor(pixelSettingArray[0], Color(pixelSettingArray[1], pixelSettingArray[2], pixelSettingArray[3]))
+              print(pixelSettingArray)
+              color = Color(int(pixelSettingArray[1]), int(pixelSettingArray[2]), int(pixelSettingArray[3]))
+              strip.setPixelColor(int(pixelSettingArray[0]),color)
 
+            print("----------------Show--------")
             strip.show()
             #colorWipe(strip, Color(int(input1), 0, 0))  # Red wipe
             #colorWipe(strip, Color(0, 255, 0))  # Blue wipe
