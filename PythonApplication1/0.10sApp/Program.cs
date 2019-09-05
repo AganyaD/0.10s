@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 
 namespace _0._10sApp
 {
@@ -20,7 +21,7 @@ namespace _0._10sApp
             //Process pytonLigths = new Process();
 
             ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = @"C:\Users\Aganya.D\Desktop\GitT\0.10s\pyton\dist\PythonApplication1\PythonApplication1.exe";
+            start.FileName = @"C:\Users\Aganya.D\Desktop\GitT\0.10s\pyton\test\dist\PythonApplication1\PythonApplication1.exe";
             start.Arguments = "";// string.Format("\"{0}\" \"{1}\"", cmd, args);
             start.UseShellExecute = false;// Do not use OS shell
             start.CreateNoWindow = true; // We don't need new window
@@ -33,46 +34,12 @@ namespace _0._10sApp
                 StreamReader reader = process.StandardOutput;
                 StreamWriter writer = process.StandardInput;
                 Console.WriteLine("start----------");
-                do
-                {
-                    
-                    try
-                    {
-                        string stderr = process.StandardError.ReadToEnd(); // Here are the exceptions from our Python script
-                        string result = reader.ReadToEnd(); // Here is the result of StdOut(for example: print "test")
-                        read += result;
-                        Console.Write(read);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.Write(ex.Message);
-                        break;
-                    }
-                    
-                } while (!read.Contains("Enter Command...."));
+                string data = string.Empty;
+                WaitForAnswer(process, "5555", "Enter Command...", 5000, out data);
 
+                process.StandardInput.WriteLine("1,2,3,4;1,2,3,4;1,2,3,4;1,2,3,4;1,2,3,4");
 
-                try
-                {
-                    writer.WriteLine("1,2,3,4;1,2,3,4;1,2,3,4;1,2,3,4;1,2,3,4"); 
-                }
-                catch (Exception ex)
-                {
-                    Console.Write(ex.Message);
-                }
-
-                try
-                {
-                    string result = reader.ReadToEnd(); // Here is the result of StdOut(for example: print "test")
-                    Console.Write(result);
-                }
-                catch (Exception ex)
-                {
-                    Console.Write(ex.Message);
-                }
-
-
-
+                WaitForAnswer(process, "5555", "Enter Command...", 5000, out data);
 
 
             }
@@ -83,6 +50,77 @@ namespace _0._10sApp
 
             }
 
+        }
+
+        private bool WaitForAnswer(Process process, String operationName, string expectedRes, int maxTimeout, out string response)
+        {
+
+            StringBuilder sb = new StringBuilder();
+
+            StringBuilder sbErros = new StringBuilder();
+
+            System.Diagnostics.Stopwatch Stopper = new Stopwatch();
+
+            Stopper.Restart();
+
+            bool success = false;
+
+            while ((!success) && (!process.HasExited) && (Stopper.ElapsedMilliseconds < maxTimeout))
+            {
+                string data = process.StandardOutput.ReadLine();
+
+                Console.WriteLine(data);
+
+                sb.Append(data);
+
+                if (data.ToUpper().Contains("ERROR"))
+                    sbErros.Append(data);
+
+                Console.WriteLine(">{0}", data);
+
+                if (data.Contains(expectedRes))
+                    success = true;
+
+                Thread.Sleep(100);
+            }
+
+            Stopper.Stop();
+
+            response = sb.ToString();
+
+            Console.WriteLine(String.Format("{0} OUTPUT:{1}", operationName, response));
+
+            if (!success)
+            {
+                if (Stopper.ElapsedMilliseconds > maxTimeout)
+                    Console.WriteLine(String.Format("WaitForAnswer: {0} timed out! Timeout Set To: {1}mS", operationName, maxTimeout));
+
+                if (process.HasExited)
+                {
+                    Console.WriteLine(String.Format("WaitForAnswer: The Process has terminated! Exit code: {0}", process.ExitCode));
+
+                    if (process.ExitCode == 0)
+                    {
+                        success = true;
+                    }
+
+                    else
+                    {
+                        Console.WriteLine(String.Format("WaitForAnswer: StandardError:{0}", process.StandardError.ReadToEnd()));
+
+                        Console.WriteLine(String.Format("WaitForAnswer: Errors from StdOut:{0}", sbErros.ToString()));
+
+                        sbErros = new StringBuilder();
+                    }
+                }
+            }
+
+            else
+            {
+                Console.WriteLine(String.Format("WaitForAnswer: {0}, Success!", operationName, maxTimeout));
+            }
+
+            return success;
         }
 
     }
