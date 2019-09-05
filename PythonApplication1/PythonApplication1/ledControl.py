@@ -103,9 +103,10 @@ if __name__ == '__main__':
             for index in range(len(inputArray)):
               print("---------------------------------------")
               pixelSettingArray = inputArray[index].split(",")
-              print(pixelSettingArray)
-              color = Color(int(pixelSettingArray[1]), int(pixelSettingArray[2]), int(pixelSettingArray[3]))
-              strip.setPixelColor(int(pixelSettingArray[0]),color)
+              if len(pixelSettingArray) == 4 :
+                print(pixelSettingArray)
+                color = Color(int(pixelSettingArray[1]), int(pixelSettingArray[2]), int(pixelSettingArray[3]))
+                strip.setPixelColor(int(pixelSettingArray[0]),color)
 
             print("----------------Show--------")
             strip.show()
