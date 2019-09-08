@@ -31,7 +31,8 @@ namespace TestApp
 					Wipe(controller, Color.Red);
 					Wipe(controller, Color.Green);
 					Wipe(controller, Color.Blue);
-				}
+                    Wipe(controller, Color.Yellow);
+                }
 			}
 		}
 
