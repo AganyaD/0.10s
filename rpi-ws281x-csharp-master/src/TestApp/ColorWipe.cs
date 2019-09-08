@@ -19,19 +19,23 @@ namespace TestApp
 
 			//The default settings uses a frequency of 800000 Hz and the DMA channel 10.
 			var settings = Settings.CreateDefaultSettings();
+            
+            //Set brightness to maximum (255)
+            //Use Unknown as strip type. Then the type will be set in the native assembly.
+            settings.Channels[0] = new Channel(ledCount, 18, 255, false, StripType.WS2812_STRIP);
+           
 
-			//Set brightness to maximum (255)
-			//Use Unknown as strip type. Then the type will be set in the native assembly.
-			settings.Channels[0] = new Channel(ledCount, 18, 255, false, StripType.WS2812_STRIP);
-
-			using (var controller = new WS281x(settings))
+            using (var controller = new WS281x(settings))
 			{
-				while(!request.IsAbortRequested)
+               
+
+                while (!request.IsAbortRequested)
 				{
 					Wipe(controller, Color.Red);
 					Wipe(controller, Color.Green);
 					Wipe(controller, Color.Blue);
                     Wipe(controller, Color.Yellow);
+                    Wipe(controller, Color.FromArgb(10, 10, 10));
                 }
 			}
 		}
