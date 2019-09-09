@@ -32,18 +32,18 @@ namespace TestApp
             int blue = 0;
             while (!request.IsAbortRequested)
             {
-                Console.Write("ledIndex,rad,green,blue");
+                Console.Write("rad,green,blue");//"ledIndex,rad,green,blue");
                 string input = Console.ReadLine();
                 string[] split = input.Split(',');
                 
-                ledIndex = Convert.ToInt16(split[0]);
+                //ledIndex = Convert.ToInt16(split[0]);
                 rad = Convert.ToInt16(split[0]);
                 green = Convert.ToInt16(split[0]);
                 blue = Convert.ToInt16(split[0]);
 
                 for (int i = 0; i < ledCount; i++)
                 {
-                    controller.SetLEDColor(0, ledIndex, Color.FromArgb(rad, green, blue));
+                    controller.SetLEDColor(0, i, Color.FromArgb(rad, green, blue));
                 }
                 controller.Render();
             }
