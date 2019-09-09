@@ -27,8 +27,9 @@ namespace TestApp
 				Console.WriteLine("0 - Exit");
 				Console.WriteLine("1 - Color wipe animation");
 				Console.WriteLine("2 - Rainbow color animation");
+                Console.WriteLine("3 - AganyaProgram");
 
-				Console.Write("What is your choice: ");
+                Console.Write("What is your choice: ");
 				input = Int32.Parse(Console.ReadLine());
 
 				var animation = GetAnimation(input);
@@ -54,7 +55,11 @@ namespace TestApp
 				case 2:
 					result = new RainbowColorAnimation();
 					break;
-			}
+
+                case 3:
+                    result = new AganyaProgram();
+                    break;
+            }
 
 			return result;
 		}

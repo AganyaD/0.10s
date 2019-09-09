@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbortRequest.cs" />
+    <Compile Include="AganyaProgram.cs" />
     <Compile Include="ColorWipe.cs" />
     <Compile Include="IAnimation.cs" />
     <Compile Include="Program.cs" />
