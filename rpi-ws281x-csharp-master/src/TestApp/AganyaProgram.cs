@@ -41,7 +41,10 @@ namespace TestApp
                 green = Convert.ToInt16(split[0]);
                 blue = Convert.ToInt16(split[0]);
 
-                controller.SetLEDColor(0, ledIndex, Color.FromArgb(rad, green, blue));
+                for (int i = 0; i < ledCount; i++)
+                {
+                    controller.SetLEDColor(0, ledIndex, Color.FromArgb(rad, green, blue));
+                }
                 controller.Render();
             }
             
