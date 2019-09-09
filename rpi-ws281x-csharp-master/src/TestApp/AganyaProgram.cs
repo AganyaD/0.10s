@@ -38,8 +38,8 @@ namespace TestApp
                 
                 //ledIndex = Convert.ToInt16(split[0]);
                 rad = Convert.ToInt16(split[0]);
-                green = Convert.ToInt16(split[0]);
-                blue = Convert.ToInt16(split[0]);
+                green = Convert.ToInt16(split[1]);
+                blue = Convert.ToInt16(split[2]);
 
                 for (int i = 0; i < ledCount; i++)
                 {
