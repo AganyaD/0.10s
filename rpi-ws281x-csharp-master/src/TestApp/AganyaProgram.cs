@@ -40,12 +40,14 @@ namespace TestApp
                 //rad = Convert.ToInt16(split[0]);
                 //green = Convert.ToInt16(split[1]);
                 //blue = Convert.ToInt16(split[2]);
+
+
                 bool flg = false;
-                for (int blue = 0; blue < 255; blue++)
+                for (int blue = 0; blue < 100; blue++)
                 {
-                    for (int green = 0; green < blue; green++)
+                    for (int green = 0; green < 100; green++)
                     {
-                        for (int rad = 0; rad < green; rad++)
+                        for (int rad = 0; rad < 100; rad++)
                         {
                             for (int i = 0; i < ledCount; i++)
                             {
@@ -62,7 +64,8 @@ namespace TestApp
                     if (flg)
                         break;
                 }
-                //controller.Render();
+
+
             }
             
 
