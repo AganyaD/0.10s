@@ -26,26 +26,37 @@ namespace TestApp
 
             var controller = new WS281x(settings);
 
-            int ledIndex = 0;
-            int rad = 0;
-            int green = 0;
-            int blue = 0;
+            //int ledIndex = 0;
+            //int rad = 0;
+            //int green = 0;
+            //int blue = 0;
             while (!request.IsAbortRequested)
             {
-                Console.Write("rad,green,blue");//"ledIndex,rad,green,blue");
-                string input = Console.ReadLine();
-                string[] split = input.Split(',');
-                
-                //ledIndex = Convert.ToInt16(split[0]);
-                rad = Convert.ToInt16(split[0]);
-                green = Convert.ToInt16(split[1]);
-                blue = Convert.ToInt16(split[2]);
+                //Console.Write("rad,green,blue");//"ledIndex,rad,green,blue");
+                //string input = Console.ReadLine();
+                //string[] split = input.Split(',');
 
-                for (int i = 0; i < ledCount; i++)
+                ////ledIndex = Convert.ToInt16(split[0]);
+                //rad = Convert.ToInt16(split[0]);
+                //green = Convert.ToInt16(split[1]);
+                //blue = Convert.ToInt16(split[2]);
+
+                for (int blue = 0; blue < 255; blue++)
                 {
-                    controller.SetLEDColor(0, i, Color.FromArgb(rad, green, blue));
+                    for (int green = 0; green < 255; green++)
+                    {
+                        for (int rad = 0; rad < 255; rad++)
+                        {
+                            for (int i = 0; i < ledCount; i++)
+                            {
+                                controller.SetLEDColor(0, i, Color.FromArgb(rad, green, blue));
+                            }
+                            controller.Render();
+                            System.Threading.Thread.Sleep(1);
+                        }
+                    }
                 }
-                controller.Render();
+                //controller.Render();
             }
             
 
