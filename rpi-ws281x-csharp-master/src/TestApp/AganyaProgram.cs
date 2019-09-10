@@ -40,7 +40,7 @@ namespace TestApp
                 //rad = Convert.ToInt16(split[0]);
                 //green = Convert.ToInt16(split[1]);
                 //blue = Convert.ToInt16(split[2]);
-
+                bool flg = false;
                 for (int blue = 0; blue < 255; blue++)
                 {
                     for (int green = 0; green < blue; green++)
@@ -56,7 +56,11 @@ namespace TestApp
                             if (!request.IsAbortRequested)
                                 break;
                         }
+                        if (flg)
+                            break;
                     }
+                    if (flg)
+                        break;
                 }
                 //controller.Render();
             }
