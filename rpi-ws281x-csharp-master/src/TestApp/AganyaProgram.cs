@@ -41,11 +41,41 @@ namespace TestApp
                 //green = Convert.ToInt16(split[1]);
                 //blue = Convert.ToInt16(split[2]);
 
-
+                int maxBrigtness = 100;
                 bool flg = false;
-                for (int blue = 0; blue < 100; blue++)
+                for (int blue = 0; blue < maxBrigtness; blue++)
                 {
-                    for (int green = 0; green < 100; green++)
+                    for (int green = 0; green < maxBrigtness; green++)
+                    {
+                        for (int rad = 0; rad < maxBrigtness; rad++)
+                        {
+                            for (int i = 0; i < ledCount; i++)
+                            {
+                                controller.SetLEDColor(0, i, Color.FromArgb(rad, green, blue));
+                            }
+                            controller.Render();
+                            System.Threading.Thread.Sleep(10);
+                            if (!request.IsAbortRequested)
+                                break;
+                        }
+
+                        for (int rad = maxBrigtness; rad > 0; rad--)
+                        {
+                            for (int i = 0; i < ledCount; i++)
+                            {
+                                controller.SetLEDColor(0, i, Color.FromArgb(rad, green, blue));
+                            }
+                            controller.Render();
+                            System.Threading.Thread.Sleep(10);
+                            if (!request.IsAbortRequested)
+                                break;
+                        }
+
+                        if (flg)
+                            break;
+                    }
+
+                    for (int green = maxBrigtness; green > 0; green--)
                     {
                         for (int rad = 0; rad < 100; rad++)
                         {
@@ -58,6 +88,19 @@ namespace TestApp
                             if (!request.IsAbortRequested)
                                 break;
                         }
+
+                        for (int rad = 100; rad > 0; rad--)
+                        {
+                            for (int i = 0; i < ledCount; i++)
+                            {
+                                controller.SetLEDColor(0, i, Color.FromArgb(rad, green, blue));
+                            }
+                            controller.Render();
+                            System.Threading.Thread.Sleep(10);
+                            if (!request.IsAbortRequested)
+                                break;
+                        }
+
                         if (flg)
                             break;
                     }
