@@ -43,16 +43,18 @@ namespace TestApp
 
                 for (int blue = 0; blue < 255; blue++)
                 {
-                    for (int green = 0; green < 255; green++)
+                    for (int green = 0; green < blue; green++)
                     {
-                        for (int rad = 0; rad < 255; rad++)
+                        for (int rad = 0; rad < green; rad++)
                         {
                             for (int i = 0; i < ledCount; i++)
                             {
                                 controller.SetLEDColor(0, i, Color.FromArgb(rad, green, blue));
                             }
                             controller.Render();
-                            System.Threading.Thread.Sleep(1);
+                            System.Threading.Thread.Sleep(10);
+                            if (!request.IsAbortRequested)
+                                break;
                         }
                     }
                 }
