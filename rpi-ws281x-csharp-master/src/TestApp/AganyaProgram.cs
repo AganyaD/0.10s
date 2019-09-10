@@ -54,7 +54,7 @@ namespace TestApp
                                 controller.SetLEDColor(0, i, Color.FromArgb(rad, green, blue));
                             }
                             controller.Render();
-                            System.Threading.Thread.Sleep(10);
+                            //System.Threading.Thread.Sleep(10);
                             if (!request.IsAbortRequested)
                                 break;
                         }
@@ -66,7 +66,7 @@ namespace TestApp
                                 controller.SetLEDColor(0, i, Color.FromArgb(rad, green, blue));
                             }
                             controller.Render();
-                            System.Threading.Thread.Sleep(10);
+                            //System.Threading.Thread.Sleep(10);
                             if (!request.IsAbortRequested)
                                 break;
                         }
@@ -84,7 +84,7 @@ namespace TestApp
                                 controller.SetLEDColor(0, i, Color.FromArgb(rad, green, blue));
                             }
                             controller.Render();
-                            System.Threading.Thread.Sleep(10);
+                            //System.Threading.Thread.Sleep(10);
                             if (!request.IsAbortRequested)
                                 break;
                         }
@@ -96,7 +96,7 @@ namespace TestApp
                                 controller.SetLEDColor(0, i, Color.FromArgb(rad, green, blue));
                             }
                             controller.Render();
-                            System.Threading.Thread.Sleep(10);
+                            //System.Threading.Thread.Sleep(10);
                             if (!request.IsAbortRequested)
                                 break;
                         }
