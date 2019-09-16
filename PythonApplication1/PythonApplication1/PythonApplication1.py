@@ -1,17 +1,33 @@
-print("Aganya hello")
-while True:
-  testPars = str(raw_input("Enter Command"));
-  print(testPars)
-  split = testPars.split(";")
-  print ("-----------------------")
-  print (split)
-  print ("-----------------------")
-  for item in split:
-          print (item)
-  print ("-----------------------")
-  for item in split:
-          split2 = item.split(",")
-          print (split2)
-          print ("-----------------------")
-  
-  print ("-----------------------")
+import logging
+import threading
+import time
+
+def thread_function(name):
+
+    logging.info("Thread %s: starting", name)
+    while True:
+        time.sleep(2)
+        input1 = raw_input();
+        logging.info("Thread input - " + input1)
+        if input1 == "break":
+            break
+    
+    
+    logging.info("Thread %s: finishing", name)
+
+if __name__ == "__main__":
+    format = "%(asctime)s: %(message)s"
+    logging.basicConfig(format=format, level=logging.INFO,
+                        datefmt="%H:%M:%S")
+
+    logging.info("Main    : before creating thread")
+    x = threading.Thread(target=thread_function, args=("Aganya",))
+    logging.info("Main    : before running thread")
+    x.start()
+    logging.info("Main    : wait for the thread to finish")
+    # x.join()
+    logging.info("Main    : all done")
+
+    while True:
+        time.sleep(2)
+        logging.info("Main:--------------------")

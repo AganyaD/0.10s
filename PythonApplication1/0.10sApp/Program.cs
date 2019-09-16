@@ -170,7 +170,7 @@ namespace _0._10sApp
             process.StartInfo.RedirectStandardOutput = true;
             process.OutputDataReceived += new DataReceivedEventHandler((sender, e) =>
             {
-                // Prepend line numbers to each line of the output.
+                // Prepend line numbers to each line of the output.l
                 if (!String.IsNullOrEmpty(e.Data))
                 {
                     lineCount++;

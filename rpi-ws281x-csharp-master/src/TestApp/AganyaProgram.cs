@@ -77,32 +77,16 @@ namespace TestApp
 
                     for (int green = maxBrigtness; green > 0; green--)
                     {
-                        for (int rad = 0; rad < 100; rad++)
+                        
+                        for (int i = 0; i < ledCount; i++)
                         {
-                            for (int i = 0; i < ledCount; i++)
-                            {
-                                controller.SetLEDColor(0, i, Color.FromArgb(rad, green, blue));
-                            }
-                            controller.Render();
-                            //System.Threading.Thread.Sleep(10);
-                            if (!request.IsAbortRequested)
-                                break;
+                            controller.SetLEDColor(0, i, Color.FromArgb(0, green, blue));
                         }
-
-                        for (int rad = 100; rad > 0; rad--)
-                        {
-                            for (int i = 0; i < ledCount; i++)
-                            {
-                                controller.SetLEDColor(0, i, Color.FromArgb(rad, green, blue));
-                            }
-                            controller.Render();
-                            //System.Threading.Thread.Sleep(10);
-                            if (!request.IsAbortRequested)
-                                break;
-                        }
-
-                        if (flg)
+                        controller.Render();
+                        //System.Threading.Thread.Sleep(10);
+                        if (!request.IsAbortRequested)
                             break;
+
                     }
                     if (flg)
                         break;
