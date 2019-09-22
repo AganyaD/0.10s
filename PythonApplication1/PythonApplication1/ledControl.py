@@ -93,23 +93,25 @@ if __name__ == '__main__':
     print ('Press Ctrl-C to quit.')
     if not args.clear:
         print('Use "-c" argument to clear LEDs on exit')
+    mode1 = " "
 
     try:
 
         while True:
             # input 
-            testPars = str(raw_input("Enter Command.... \n"));
+            testPars = str(raw_input("Enter Command.... \n"))
             inputArray = testPars.split(";")
-            for index in range(len(inputArray)):
-              print("---------------------------------------")
-              pixelSettingArray = inputArray[index].split(",")
-              if len(pixelSettingArray) == 4 :
-                print(pixelSettingArray)
-                color = Color(int(pixelSettingArray[1]), int(pixelSettingArray[2]), int(pixelSettingArray[3]))
-                strip.setPixelColor(int(pixelSettingArray[0]),color)
+            #for index in range(len(inputArray)):
+            #  print("---------------------------------------")
+            #  pixelSettingArray = inputArray[index].split(",")
+            #  if len(pixelSettingArray) == 4 :
+            #    print(pixelSettingArray)
+            #    color = Color(int(pixelSettingArray[1]), int(pixelSettingArray[2]), int(pixelSettingArray[3]))
+            #    strip.setPixelColor(int(pixelSettingArray[0]),color)
+            strip.setPixelColor(int(inputArray[0]),Color(int(inputArray[1]), 0, 0))
 
-            print("----------------Show--------")
-            strip.show()
+            #print("----------------Show--------")
+            #strip.show()
             #colorWipe(strip, Color(int(input1), 0, 0))  # Red wipe
             #colorWipe(strip, Color(0, 255, 0))  # Blue wipe
             #colorWipe(strip, Color(0, 0, 255))  # Green wipe
